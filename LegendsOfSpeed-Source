@@ -1,1 +1,112 @@
+Subscribe Like Share Enjoy! :D
 
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/WME4s0kY", true))()
+
+local example = library:CreateWindow({
+  text = "Auto Stuff"
+})
+
+local island = library:CreateWindow({
+  text = "Island TP"
+})
+
+local speed = library:CreateWindow({
+  text = "Recommended Speed"
+})
+
+local eggs = library:CreateWindow({
+  text = "Open Eggs"
+})
+
+local credits = library:CreateWindow({text='Credits'})
+credits:AddLabel("Credits: Zyx: Developer\nVersion 1.2\ZallyWag: UI")
+
+-- Auto Farm Orbs
+example:AddToggle("Auto Farm Orbs", function(state)
+    _G.Farm = state
+    while _G.Farm do
+        wait(1)  -- Added delay to prevent server overloading
+        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City")
+    end
+end)
+
+-- Auto Farm Yellow Orbs
+example:AddToggle("Auto Farm Yellow Orb", function(state)
+    _G.Gems = state
+    while _G.Gems do
+        wait(1)
+        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+    end
+end)
+
+-- Auto Hoops
+example:AddToggle("Auto Hoops", function(state)
+    _G.Hoops = state
+    while _G.Hoops do
+        wait(1)
+        local children = workspace.Hoops:GetChildren()
+        for _, child in ipairs(children) do
+            if child.Name == "Hoop" then
+                child.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            end
+        end
+    end
+end)
+
+-- Auto Rebirth
+example:AddToggle("Auto Rebirth", function(state)
+    _G.Rebirth = state
+    while _G.Rebirth do
+        wait(1)
+        game.ReplicatedStorage.rEvents.rebirthEvent:FireServer("rebirthRequest")
+    end
+end)
+
+-- Teleport Buttons
+island:AddButton("Spawn", function()
+    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-559.2, -7.45058e-08, 417.4))
+end)
+
+island:AddButton("Snow City", function()
+    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-858.358, 0.5, 2170.35))
+end)
+
+island:AddButton("Magma City", function()
+    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1707.25, 0.550008, 4331.05))
+end)
+
+island:AddButton("Legends Highway", function()
+    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(3594.68, 214.804, 7274.56))
+end)
+
+-- Best Egg Toggle
+eggs:AddToggle("Best Egg", function(state)
+    _G.BestEgg = state
+    while _G.BestEgg do
+        wait(1)
+        game.ReplicatedStorage.rEvents.openCrystalRemote:InvokeServer("openCrystal", "Electro Legends Crystal")
+    end
+end)
+
+-- Speed and Jump buttons
+speed:AddButton("Speed 300", function()
+    game.ReplicatedStorage.rEvents.changeSpeedJumpRemote:InvokeServer("changeSpeed", 300)
+end)
+
+speed:AddButton("Jump 200", function()
+    game.ReplicatedStorage.rEvents.changeSpeedJumpRemote:InvokeServer("changeJump", 200)
+end)
+
+-- Auto Evolve (WIP)
+example:AddToggle("Auto Evolve (wip)", function(state)
+    _G.Evolve = state
+    while _G.Evolve do
+        wait(1)
+        game.ReplicatedStorage.rEvents.petEvolveEvent:FireServer("evolvePet", "all")
+    end
+end)
+
+-- Destroy GUI
+example:AddDestroy("Destroy GUI", function()
+    library.gui:Destroy()
+end)
