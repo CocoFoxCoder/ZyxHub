@@ -1,46 +1,52 @@
-
-
+-- Load library
 local library = loadstring(game:HttpGet("https://pastebin.com/raw/WME4s0kY", true))()
 
-local example = library:CreateWindow({
-  text = "Auto Stuff"
-})
+-- Create Windows
+local lib = library:CreateWindow({text = "Auto Stuff"})
+local island = library:CreateWindow({text = "Island TP"})
+local speed = library:CreateWindow({text = "Recommended Speed"})
+local eggs = library:CreateWindow({text = "Open Eggs"})
+local credits = library:CreateWindow({text = "Credits"})
 
-local island = library:CreateWindow({
-  text = "Island TP"
-})
-
-local speed = library:CreateWindow({
-  text = "Recommended Speed"
-})
-
-local eggs = library:CreateWindow({
-  text = "Open Eggs"
-})
-
-local credits = library:CreateWindow({text='Credits'})
-credits:AddLabel("Credits: Zyx: Developer\nVersion 1.2\ZallyWag: UI")
+-- Credits
+credits:AddLabel("Credits: Zyx: Developer\nVersion 1.2\n Lastest Version!")
 
 -- Auto Farm Orbs
-example:AddToggle("Auto Farm Orbs", function(state)
+lib:AddToggle("Auto Farm Orbs", function(state)
     _G.Farm = state
     while _G.Farm do
-        wait(1)  -- Added delay to prevent server overloading
+        wait(0.01) -- Added delay to prevent server overloading
         game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City")
+		        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City")
+    end
+end)
+
+lib:AddToggle("Auto Gems", function(state)
+    _G.Farm = state
+    while _G.Farm do
+        wait(0.1) -- Added delay to prevent server overloading
+        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+		        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+				        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+						        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
     end
 end)
 
 -- Auto Farm Yellow Orbs
-example:AddToggle("Auto Farm Yellow Orb", function(state)
+lib:AddToggle("Auto Farm Yellow Orb", function(state)
     _G.Gems = state
     while _G.Gems do
-        wait(1)
+        wait(0.5)
         game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+		 game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+		  game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+		   game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+		    game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
     end
 end)
 
 -- Auto Hoops
-example:AddToggle("Auto Hoops", function(state)
+lib:AddToggle("Auto Hoops", function(state)
     _G.Hoops = state
     while _G.Hoops do
         wait(1)
@@ -54,7 +60,7 @@ example:AddToggle("Auto Hoops", function(state)
 end)
 
 -- Auto Rebirth
-example:AddToggle("Auto Rebirth", function(state)
+lib:AddToggle("Auto Rebirth", function(state)
     _G.Rebirth = state
     while _G.Rebirth do
         wait(1)
@@ -80,7 +86,7 @@ island:AddButton("Legends Highway", function()
 end)
 
 -- Best Egg Toggle
-eggs:AddToggle("Best Egg", function(state)
+eggs:AddToggle("Electro Legends", function(state)
     _G.BestEgg = state
     while _G.BestEgg do
         wait(1)
@@ -88,7 +94,22 @@ eggs:AddToggle("Best Egg", function(state)
     end
 end)
 
--- Speed and Jump buttons
+eggs:AddToggle("Starter Crystal", function(state)
+    _G.BestEgg = state
+    while _G.BestEgg do
+        wait(1)
+        game.ReplicatedStorage.rEvents.openCrystalRemote:InvokeServer("openCrystal", "Lightning Crystal")
+    end
+end)
+
+eggs:AddToggle("Inferno Crystal", function(state)
+    _G.BestEgg = state
+    while _G.BestEgg do
+        wait(1)
+        game.ReplicatedStorage.rEvents.openCrystalRemote:InvokeServer("openCrystal", "Inferno Crystal")
+    end
+end)
+-- Speed and Jump Buttons
 speed:AddButton("Speed 300", function()
     game.ReplicatedStorage.rEvents.changeSpeedJumpRemote:InvokeServer("changeSpeed", 300)
 end)
@@ -98,7 +119,7 @@ speed:AddButton("Jump 200", function()
 end)
 
 -- Auto Evolve (WIP)
-example:AddToggle("Auto Evolve (wip)", function(state)
+lib:AddToggle("Auto Evolve (wip)", function(state)
     _G.Evolve = state
     while _G.Evolve do
         wait(1)
@@ -107,6 +128,6 @@ example:AddToggle("Auto Evolve (wip)", function(state)
 end)
 
 -- Destroy GUI
-example:AddDestroy("Destroy GUI", function()
+lib:AddDestroy("Destroy GUI", function()
     library.gui:Destroy()
 end)
