@@ -32,18 +32,10 @@ lib:AddToggle("Auto Gems", function(state)
     end
 end)
 
-lib:AddToggle("Auto Collect Yellow Orb", function(state)
+lib:AddToggle("Auto Farm Yellow Orb", function(state)
     _G.Gems = state
-    local orbFolder = game.Workspace:WaitForChild("orbFolder"):WaitForChild("City")
-    local yellowOrb = orbFolder:WaitForChild("Yellow Orb")
-
     while _G.Gems do
-        wait(0.01)  -- Slight delay to avoid flooding the server too much
-        
-        -- Collect the Yellow Orb 5 times per iteration
-        for i = 1, 5 do
-            game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", yellowOrb.Name, "City")
-        end
+        game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
     end
 end)
 
