@@ -32,23 +32,38 @@ lib:AddToggle("Auto Gems", function(state)
     end
 end)
 
--- Auto Farm Yellow Orbs
 lib:AddToggle("Auto Farm Yellow Orb", function(state)
     _G.Gems = state
     local orbFolder = game.Workspace:WaitForChild("orbFolder"):WaitForChild("City")
     
+    -- Predefined list of specific orbs to teleport
+    local orbsToTeleport = {
+        orbFolder:GetChildren()[70],
+        orbFolder:GetChildren()[42],
+        orbFolder:GetChildren()[18],
+        orbFolder:GetChildren()[37],
+        orbFolder:WaitForChild("Yellow Orb"),
+        orbFolder:GetChildren()[32],
+        orbFolder:GetChildren()[66],
+        orbFolder:GetChildren()[44],
+        orbFolder:GetChildren()[12],
+        orbFolder:GetChildren()[16],
+        orbFolder:GetChildren()[17],
+    }
+    
     while _G.Gems do
         wait(0.1)
         
-        -- Loop through all the Yellow Orbs in the City folder and teleport them to the player
-        for _, orb in pairs(orbFolder:GetChildren()) do
-            if orb:IsA("Model") and orb.Name == "Yellow Orb" and orb:FindFirstChild("PrimaryPart") then
+        -- Loop through the predefined list of orbs and teleport them
+        for _, orb in pairs(orbsToTeleport) do
+            if orb and orb:IsA("Model") and orb:FindFirstChild("PrimaryPart") then
                 -- Teleport each orb to the player's position
                 orb:SetPrimaryPartCFrame(game.Players.localPlayer.Character.HumanoidRootPart.CFrame)
             end
         end
     end
 end)
+
 
 
 -- Auto Hoops
