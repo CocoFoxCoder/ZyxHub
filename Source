@@ -1,0 +1,7 @@
+local urls = {
+    [3101667897] = "https://raw.githubusercontent.com/CocoFoxCoder/ZyxHub/refs/heads/main/LegendsOfSpeed-Source", -- Ninja Legends
+    [3623096087] = "https://raw.githubusercontent.com/CocoFoxCoder/ZyxHub/refs/heads/main/Muscle_Legends" -- Muscle Legends
+}
+
+local url = urls[game.PlaceId]
+if url then loadstring(game:HttpGet(url))() end
