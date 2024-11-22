@@ -1,5 +1,5 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/HouseOfBalance/SpeedHubXSetting/main/Settings.lua"))()
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/HouseOfBalance/MainSpeedHubX/main/Library/V3.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyxScripts/SpeedHubX/refs/heads/main/Settings.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyxScripts/SpeedHubX/refs/heads/main/Library.lua"))()
 local Window = Library:MakeWindow({
     Title = "Speed Hub X | " .. Version,
     SaveFolder = "Speed Hub X"
