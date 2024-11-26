@@ -1,16 +1,19 @@
-local rebirthRemote = game.ReplicatedStorage.rEvents:FindFirstChild("rebirthRemote")
+-- Simple Auto Rebirth Script
+-- Ensure this complies with the game's rules before running
 
-if rebirthRemote then
-    if rebirthRemote:IsA("RemoteEvent") then
-        print("rebirthRemote is a RemoteEvent.")
-        rebirthRemote:FireServer("rebirthRequest")
-    elseif rebirthRemote:IsA("RemoteFunction") then
-        print("rebirthRemote is a RemoteFunction.")
-        local response = rebirthRemote:InvokeServer("rebirthRequest")
-        print("Server Response:", response)
-    else
-        warn("rebirthRemote is neither a RemoteEvent nor a RemoteFunction.")
+-- Define variables
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local rebirthEvent = ReplicatedStorage:WaitForChild("rEvents"):WaitForChild("rebirthRemote")
+
+-- Function to auto-rebirth
+local function autoRebirth()
+    while true do
+        -- Call the remote event
+        rebirthEvent:FireServer()
+        -- Wait for a short interval to prevent overloading
+        wait(0.5) -- Adjust the delay as needed
     end
-else
-    warn("rebirthRemote not found.")
 end
+
+-- Start the auto-rebirth function
+autoRebirth()
