@@ -1,29 +1,29 @@
--- Simple Auto Rebirth Script (InvokeServer)
+-- Script to Invoke a RemoteFunction
 -- Ensure this complies with the game's rules before running
 
 -- Define variables
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local rebirthFunction = ReplicatedStorage:WaitForChild("rEvents"):WaitForChild("rebirthRemote")
 
--- Function to auto-rebirth
-local function autoRebirth()
+-- Function to repeatedly invoke the RemoteFunction
+local function autoInvokeRebirth()
     while true do
-        -- Invoke the RemoteFunction
+        -- Safely invoke the server
         local success, result = pcall(function()
             return rebirthFunction:InvokeServer()
         end)
         
-        -- Handle success or errors
+        -- Handle server responses or errors
         if success then
-            print("Rebirth successful:", result)
+            print("Rebirth invoked successfully:", result) -- result might be a success message or data
         else
-            warn("Failed to invoke rebirthRemote:", result)
+            warn("Error invoking rebirthRemote:", result)
         end
         
-        -- Wait for a short interval to prevent overloading
-        wait(0.5) -- Adjust the delay as needed
+        -- Wait to prevent overwhelming the server
+        wait(1) -- Adjust delay as necessary
     end
 end
 
--- Start the auto-rebirth function
-autoRebirth()
+-- Start the auto-invocation
+autoInvoke
