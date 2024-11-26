@@ -1,10 +1,15 @@
--- Define a function to invoke the rebirth remote
-local function autoRebirth()
-    game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer()
+-- Auto Rebirth Script for Roblox (using rebirthRemote)
+local rebirthRemote = game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest") -- Reference to the rebirth remote event
+local waitTime = 1 -- Time in seconds between rebirth attempts
+
+-- Function to perform the rebirth action
+local function rebirth()
+    -- Fire the remote event to trigger the rebirth
+    rebirthRemote:InvokeServer()
 end
 
--- Continuously invoke the function every 0.1 seconds
+-- Main loop to keep triggering rebirth every few seconds
 while true do
-    autoRebirth()   -- Call the function to invoke the rebirthRemote
-    wait(0.1)       -- Wait for 0.1 seconds before calling it again
+    rebirth() -- Call the rebirth function
+    wait(waitTime) -- Wait before triggering again
 end
